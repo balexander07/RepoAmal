@@ -1,0 +1,32 @@
+package testCases;
+
+
+import pageClass.Login;
+import pageClass.Keywords;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+
+public class loginPageTest {
+
+	Login loginObj = new Login();
+	@Test
+	public void testaTxtUserName() {
+		loginObj.setTextUserName("alexander07");
+		Assert.assertEquals("alexander07", loginObj.getTextUserName());
+	}
+	
+	@Test
+	public void testbTxtPassword() {
+		loginObj.setTextPassword("dhanaraj07");
+		Assert.assertEquals("dhanaraj07", loginObj.getTextPassword());
+	}
+	
+	@Test
+	public void testcclickBtnLogin() {
+		loginObj.clickBtnLogin();
+		Assert.assertEquals("AdactIn.com - Search Hotel", Keywords.getDriver().getTitle());
+	}
+
+}

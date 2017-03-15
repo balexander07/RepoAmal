@@ -1,0 +1,41 @@
+package AdactinPackage;
+
+import java.io.IOException;
+
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+//import org.apache.poi.xssf.usermodel.XSSFCell;
+//import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+//import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+//import com.google.common.collect.Table.Cell;
+//import org.openqa.selenium.WebDriver;
+//import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class DataDrivenApproach {
+	
+	public static XSSFWorkbook workbook = new XSSFWorkbook("C:/Users/admin/Downloads/SampleFile.xlsx");
+
+	public static void loadConfig()
+	{
+		
+	}
+	void Login()
+	{
+		System.setProperty("webdriver.gecko.driver", "C:/Users/admin/Downloads/geckodriver.exe");
+		WebDriver wd = new FirefoxDriver();
+		wd.get("http://www.adactin.com/hotelapp");
+		
+		wd.findElement(By.id("username")).sendKeys("Alexander07");
+		wd.findElement(By.id("password")).sendKeys("dhanaraj07");
+		wd.findElement(By.id("login")).click();
+	}
+	
+	
+}

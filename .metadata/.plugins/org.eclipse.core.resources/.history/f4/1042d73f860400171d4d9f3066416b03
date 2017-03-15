@@ -1,0 +1,48 @@
+package KeywordDrivenPackage;
+
+import org.apache.poi.ss.usermodel.Row;
+
+public class TestExecuter extends KeywordDriver{
+	
+	static keywords objKeyword = new keywords();
+	
+	public static void main(String[] args)
+	{
+		for(Row rownum:workbook.getSheet("TestCase"))
+		{
+			if (rownum == workbook.getSheet("TestCase").getRow(0))
+				continue;
+			
+			String locator = rownum.getCell(0).getStringCellValue();
+			String locatorValue = rownum.getCell(1).getStringCellValue();
+			String keyword = rownum.getCell(2).getStringCellValue();
+			String parameter;
+			
+			if (rownum.getCell(3)!=null)
+				parameter = rownum.getCell(3).getStringCellValue();
+			else
+				parameter = "";
+			
+			performAction(locator, locatorValue, keyword, parameter);
+			
+		}
+	}
+	
+	public static void performAction(String locator, String locatorValue, String keyword, String parameter)
+	{
+		switch(keyword.toLowerCase().trim())
+		{
+		case "entertext":
+			objKeyword.enterText(locator, locatorValue, parameter);
+			break;
+			
+		case "clickbutton":
+			objKeyword.clickButton(locator, locatorValue);
+			break;
+		
+		case "selectvalue":
+			objKeyword.selectValue(locator, locatorValue, parameter);
+			break;
+		}
+	}
+}

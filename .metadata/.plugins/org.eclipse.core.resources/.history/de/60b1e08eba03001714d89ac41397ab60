@@ -1,0 +1,78 @@
+package AdactinPackage;
+
+import java.io.IOException;
+
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+//import org.apache.poi.xssf.usermodel.XSSFCell;
+//import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+//import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+//import com.google.common.collect.Table.Cell;
+//import org.openqa.selenium.WebDriver;
+//import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class ExcelTest {
+	//System.setProperty("webdriver.gecko.driver", "C:/Users/admin/Downloads/geckodriver.exe");
+	WebDriver wd = new FirefoxDriver();
+	
+	void Login()
+	{
+		System.setProperty("webdriver.gecko.driver", "C:/Users/admin/Downloads/geckodriver.exe");
+		/*WebDriver wd = new FirefoxDriver();*/
+		wd.get("http://www.adactin.com/hotelapp");
+		
+		wd.findElement(By.id("username")).sendKeys("Alexander07");
+		wd.findElement(By.id("password")).sendKeys("dhanaraj07");
+		wd.findElement(By.id("login")).click();
+	}
+	
+	void Logout()
+	{
+		System.setProperty("webdriver.gecko.driver", "C:/Users/admin/Downloads/geckodriver.exe");
+		/*WebDriver wd = new FirefoxDriver();*/
+		wd.findElement(By.xpath("/html/body/table[2]/tbody/tr[1]/td[2]/a[4]")).click();
+	}
+
+	void readExcel() throws IOException
+	{
+		XSSFWorkbook workbook = new XSSFWorkbook("C:/Users/admin/Downloads/SampleFile.xlsx");
+		XSSFSheet sheet = workbook.getSheetAt(0);
+		//XSSFRow row = sheet.getRow(0);
+		//XSSFCell cell = row.getCell(0);
+		//int rowCnt = sheet.getLastRowNum();
+		for (int i=1; i < sheet.getLastRowNum()+1; i++)
+		{
+			for (int j=0; j < sheet.getRow(i).getLastCellNum(); j++)
+			{
+				XSSFCell cell = sheet.getRow(i).getCell(j);
+				System.out.println(cell.getStringCellValue());				
+			}
+			
+		}
+		for (Row rownum:sheet)
+		{
+			for (Cell cellnum:rownum)
+			{
+				System.out.print(cellnum.getStringCellValue() + "\t");
+			}
+			System.out.println();
+		}
+		
+		workbook.close();
+	}
+	
+	public static void main(String[] args) throws IOException
+	{
+		ExcelTest excelObj = new ExcelTest();
+		excelObj.Login();
+		excelObj.Logout();
+	}	
+}
+

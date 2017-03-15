@@ -1,0 +1,12 @@
+package AdactinPackage;
+
+public class Temp extends DataDrivenApproach {
+	
+	public static void main (String[] args)
+	{
+		
+	}
+}
+
+
+

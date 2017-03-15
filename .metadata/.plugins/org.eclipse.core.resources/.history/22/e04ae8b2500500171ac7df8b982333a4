@@ -1,0 +1,31 @@
+package testCases;
+
+import junit.framework.Assert;
+import pageClass.Login;
+import pageClass.Keywords;
+
+import org.junit.Test;
+
+@SuppressWarnings("deprecation")
+public class loginPageTest {
+
+	Login loginObj = new Login();
+	@Test
+	public void testTxtUserName() {
+		loginObj.setTextUserName("alexander07");
+		Assert.assertEquals("alexander07", loginObj.getTextUserName());
+	}
+	
+	@Test
+	public void testTxtPassword() {
+		loginObj.setTextPassword("dhanaraj07");
+		Assert.assertEquals("dhanaraj07", loginObj.getTextPassword());
+	}
+	
+	@Test
+	public void testBtnLogin() {
+		loginObj.clickBtnLogin();
+		Assert.assertEquals("AdactIn.com - Search Hotel", Keywords.getDriver().getTitle());
+	}
+
+}

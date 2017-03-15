@@ -1,0 +1,22 @@
+package pageClass;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class Keywords {
+	public static WebDriver wd;
+	
+	public static WebDriver getDriver()
+	{
+		if (wd==null)
+		{
+			System.setProperty("webdriver.gecko.driver", "C:/Users/admin/Downloads/geckodriver.exe");
+			wd = new FirefoxDriver();
+			wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			wd.get("http://adactin.com/HotelApp/");
+		}
+		return wd;
+	}
+}

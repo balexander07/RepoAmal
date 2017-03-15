@@ -1,0 +1,54 @@
+package KeywordDrivenPackage;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.Select;
+
+public class keywords extends KeywordDriver
+{
+	public static void performAction(String locator, String locatorValue, String keyword, String parameter)
+	{
+		switch(keyword.toLowerCase().trim())
+		{
+		case "entertext":
+			objKeyword.enterText(locator, locatorValue, parameter);
+			break;
+			
+		case "clickbutton":
+			objKeyword.clickButton(locator, locatorValue);
+			break;
+		
+		case "selectvalue":
+			objKeyword.selectValue(locator, locatorValue, parameter);
+			break;
+		}
+	}
+	
+	public void enterText(By by, String parameter)
+	{
+		wd.findElement(by.sendKeys(parameter);
+	}
+	
+	public void clickButton(By by)
+	{
+		wd.findElement(by.click();
+	}
+	
+	public void selectValue(String locator, String locatorValue, String parameter)
+	{
+		Select select = new Select(wd.findElement(By.id(locatorValue)));
+		select.selectByVisibleText(parameter);
+	}
+	
+	public By getObj(String locator, String locatorValue)
+	{
+		By by = null;
+		switch(locator.toLowerCase().trim())
+		{
+			case "id":
+				by = By.id(locatorValue);
+			
+			case "xpath":
+				by = By.xpath(locatorValue);
+		}
+	}
+}

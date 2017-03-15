@@ -1,0 +1,34 @@
+package testCases;
+
+//import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class Login {
+
+	@Test
+	public void correctLogin() {
+		
+	}
+	
+	@Test
+	public void incorrectLogin() {
+		
+	}
+	
+	@Test
+	public void forgotPassword() {
+		
+	}
+	
+	@Test
+	public void emptyUserName() {
+		
+	}
+	
+	@Test
+	public void emptyPassword() {
+		
+	}
+
+}

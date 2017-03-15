@@ -1,0 +1,35 @@
+package AdactinPackage;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+//import org.apache.poi.xssf.usermodel.XSSFCell;
+//import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+//import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+
+public class Temp {
+	
+	public static void main (string args[]){
+		XSSFWorkbook workbook = new XSSFWorkbook("C:/Users/admin/Downloads/SampleFile.xlsx");
+		XSSFSheet sheet = workbook.getSheetAt(0);
+		
+		workbook.getSheetAt(0).createRow(6).createCell(0).setCellValue("Testing");
+		//workbook.getSheetAt(0).getRow(6).createCell(0);
+		FileOutputStream fos = new FileOutputStream(new File("C:/Users/admin/Downloads/SampleFile.xlsx"));
+		workbook.close();
+		fos.close();
+		workbook.getSheetAt(0).getRow(6).getCell(0).getStringCellValue();
+		workbook.close();
+	}
+	
+
+}

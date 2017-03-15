@@ -1,0 +1,28 @@
+package testCases;
+
+import static org.junit.Assert.*;
+import junit.framework.Assert;
+import pageClass.Login;
+
+import org.junit.Test;
+
+public class loginPageTest {
+
+	Login loginObj;
+	@Test
+	public void testTxtUserName() {
+		loginObj.setTextUserName("alexander07");
+		Assert.assertEquals("alexander07", loginObj.getTextUserName());
+	}
+	
+	public void testTxtPassword() {
+		loginObj.setTextPassword("dhanaraj07");
+		Assert.assertEquals("dhanaraj07", loginObj.getTextPassword());
+	}
+	
+	public void testBtnLogin() {
+		loginObj.clickBtnLogin();
+		Assert.assertEquals("Welcome to AdactIn Group of Hotels", loginObj.getTextPassword());
+	}
+
+}

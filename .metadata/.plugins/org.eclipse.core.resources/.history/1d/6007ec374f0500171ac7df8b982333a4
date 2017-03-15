@@ -1,0 +1,16 @@
+package pageClass;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class Keywords {
+	public static WebDriver wd;
+	
+	public static getDriver()
+	{
+		System.setProperty("webdriver.gecko.driver", "C:/Users/admin/Downloads/geckodriver.exe");
+		wd = new FirefoxDriver();
+		wd.get("http://adactin.com/HotelApp/");
+		return wd;
+	}
+}

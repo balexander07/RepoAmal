@@ -1,0 +1,17 @@
+package testCases;
+
+import static org.junit.Assert.*;
+import pageClass.Login;
+
+import org.junit.Test;
+
+public class loginPageTest {
+
+	Login loginObj;
+	@Test
+	public void testTxtUserName() {
+		loginObj.setTextUserName("alexander07");
+		
+	}
+
+}

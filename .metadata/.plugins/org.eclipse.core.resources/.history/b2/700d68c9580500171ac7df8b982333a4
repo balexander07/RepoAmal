@@ -1,0 +1,43 @@
+package testCases;
+
+
+import pageClass.Login;
+import pageClass.Keywords;
+
+import org.junit.Assert;
+import org.junit.FixMethodOrder;
+import org.junit.Test;
+import org.junit.runners.MethodSorters;
+
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+
+public class loginPageTest {
+
+	Login loginObj = new Login();
+	@Test
+	public void testaTxtUserName() {
+		loginObj.setTextUserName("alexander07");
+		Assert.assertEquals("alexander07", loginObj.getTextUserName());
+	}
+	
+	@Test
+	public void testbTxtPassword() {
+		loginObj.setTextPassword("dhanaraj07");
+		Assert.assertEquals("dhanaraj07", loginObj.getTextPassword());
+	}
+	
+	@Test
+	public void testcclickBtnLogin() {
+		loginObj.clickBtnLogin();
+		Assert.assertEquals("AdactIn.com - Hotel Reservation System", Keywords.getDriver().getTitle());
+	}
+	
+	@Test
+	public void testaaclickBtnLogin() {
+		loginObj.setTextUserName("test");
+		loginObj.setTextPassword("test");
+		loginObj.clickBtnLogin();
+		Assert.assertEquals("Invalid Login Details", loginObj.getTextInvalidLogin());
+	}
+
+}

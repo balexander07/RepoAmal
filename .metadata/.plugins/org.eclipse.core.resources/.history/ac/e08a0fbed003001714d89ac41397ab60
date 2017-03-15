@@ -1,0 +1,72 @@
+package AdactinPackage;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+//import org.apache.poi.xssf.usermodel.XSSFCell;
+//import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+//import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+//import com.google.common.collect.Table.Cell;
+//import org.openqa.selenium.WebDriver;
+//import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class DataDrivenApproach {
+	public static String excelPath, URL, Browser;
+	public static XSSFWorkbook workbook;
+	public static WebDriver wd;
+
+	public static void loadConfig() throws IOException
+	{
+		excelPath = "C:/Users/admin/Downloads/SampleFile.xlsx";
+		workbook = new XSSFWorkbook(excelPath);
+		Browser = workbook.getSheet("Config").getRow(0).getCell(1).getStringCellValue();
+		URL = workbook.getSheet("Config").getRow(1).getCell(1).getStringCellValue();
+	}
+	
+	public static void Login()
+	{
+		System.setProperty("webdriver.gecko.driver", "C:/Users/admin/Downloads/geckodriver.exe");
+		WebDriver wd = new FirefoxDriver();
+		wd.get(URL);
+		
+		wd.findElement(By.id("username")).sendKeys("Alexander07");
+		wd.findElement(By.id("password")).sendKeys("dhanaraj07");
+		wd.findElement(By.id("login")).click();
+	}
+	
+	public static void initDriver()
+	{
+		switch(Browser)
+		{
+			case "Firefox":
+				System.setProperty("webdriver.gecko.driver", "C:/Users/admin/Downloads/geckodriver.exe");
+				wd = new FirefoxDriver();
+				break;
+				
+			case "Chrome":
+				System.setProperty("webdriver.gecko.driver", "C:/Users/admin/Downloads/chromedriver.exe");
+				wd = new ChromeDriver();
+				break;
+		}
+	}
+	
+	public static void writeExcel() throws FileNotFoundException
+	{
+		FileInputStream fis = new FileInputStream(excelPath);
+		workbook.write(fis);
+		workbook.close();
+		fis.close();
+	}
+	
+}

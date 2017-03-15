@@ -1,0 +1,43 @@
+package KeywordDrivenPackage;
+
+//import java.io.IOException;
+
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
+import org.apache.poi.ss.usermodel.Row;
+//import org.openqa.selenium.By;
+//import org.openqa.selenium.support.ui.Select;
+
+public class TestExecuter extends KeywordDriver{
+	
+	keywords objKeyword = new keywords();
+	
+	public static void main(String[] args) throws IOException, InterruptedException
+	{
+		
+		loadConfig();
+		initDriver();
+		Login();
+		Thread.sleep(1000);
+		
+		for(Row rownum:workbook.getSheet("TestCase"))
+		{
+			if (rownum == workbook.getSheet("TestCase").getRow(0))
+				continue;
+			
+			String locator = rownum.getCell(0).getStringCellValue();
+			String locatorValue = rownum.getCell(1).getStringCellValue();
+			String keyword = rownum.getCell(2).getStringCellValue();
+			String parameter;
+			
+			if (rownum.getCell(3)!=null)
+				parameter = rownum.getCell(3).getStringCellValue();
+			else
+				parameter = "";
+			
+			objKeyword.performAction(locator, locatorValue, keyword, parameter);
+			wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		}
+	}
+}

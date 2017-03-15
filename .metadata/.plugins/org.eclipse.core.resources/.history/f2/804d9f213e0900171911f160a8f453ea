@@ -1,0 +1,74 @@
+package unitTesting;
+
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
+import pageClass.LoginPage;
+import pageClass.Keywords;
+
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.junit.Assert;
+import org.junit.FixMethodOrder;
+import org.junit.Test;
+import org.junit.runners.MethodSorters;
+import org.openqa.selenium.By;
+
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+
+public class loginTest {
+
+	LoginPage loginObj = new LoginPage();
+	@Test
+	public void testbTxtUserName() {
+		loginObj.setTextUserName("alexander07");
+		Assert.assertEquals("alexander07", loginObj.getTextUserName());
+	}
+	
+	@Test
+	public void testcTxtPassword() {
+		loginObj.setTextPassword("dhanaraj07");
+		Assert.assertEquals("dhanaraj07", loginObj.getTextPassword());
+	}
+	
+	@Test
+	public void testdclickBtnLogin() {
+		loginObj.clickBtnLogin();
+		Assert.assertEquals("AdactIn.com - Hotel Reservation System", Keywords.getDriver().getTitle());
+	}
+	
+	@Test
+	public void testaclickBtnLogin() {
+		loginObj.setTextUserName("test");
+		loginObj.setTextPassword("test");
+		loginObj.clickBtnLogin();
+		Keywords.wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+		Assert.assertEquals("Invalid Login Details", loginObj.getTextInvalidLogin());
+	}
+	
+	@Test
+	public void testReadFromExcel() throws IOException {
+		String URL, browser;
+		String excelPath = "C:/Users/admin/Downloads/SampleFile.xlsx";
+		FileInputStream fis = new FileInputStream(excelPath);
+		XSSFWorkbook workbook = new XSSFWorkbook(fis);
+		fis.close();
+		
+		/*URL = workbook.getSheet("Config").getRow(1).getCell(1).getStringCellValue();
+		browser = workbook.getSheet("Config").getRow(0).getCell(1).getStringCellValue();
+		System.out.println(URL);
+		System.out.println(browser);*/
+		
+		for(Row row: workbook.getSheetAt(1)){
+			if (row==workbook.getSheetAt(1).getRow(0))
+				continue;
+			
+			System.out.println(row.getCell(0).getStringCellValue());
+			System.out.println(row.getCell(1).getStringCellValue());
+		}
+	}
+
+}

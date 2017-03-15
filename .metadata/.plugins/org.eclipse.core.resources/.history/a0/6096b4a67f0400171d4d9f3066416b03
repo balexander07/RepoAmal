@@ -1,0 +1,21 @@
+package KeywordDrivenPackage;
+
+import java.io.IOException;
+
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.WebDriver;
+
+public class KeywordDriver {
+	public static String excelPath, URL, Browser;
+	public static XSSFWorkbook workbook;
+	public static WebDriver wd;
+
+	public static void loadConfig() throws IOException
+	{
+		excelPath = "C:/Users/admin/Downloads/SampleFile.xlsx";
+		workbook = new XSSFWorkbook(excelPath);
+		Browser = workbook.getSheet("Config").getRow(0).getCell(1).getStringCellValue();
+		URL = workbook.getSheet("Config").getRow(1).getCell(1).getStringCellValue();
+	}
+	
+}

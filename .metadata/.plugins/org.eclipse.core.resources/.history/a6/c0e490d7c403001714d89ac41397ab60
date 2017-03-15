@@ -1,0 +1,21 @@
+package AdactinPackage;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class DataDrivenApproach {
+
+	void Login()
+	{
+		System.setProperty("webdriver.gecko.driver", "C:/Users/admin/Downloads/geckodriver.exe");
+		WebDriver wd = new FirefoxDriver();
+		wd.get("http://www.adactin.com/hotelapp");
+		
+		wd.findElement(By.id("username")).sendKeys("Alexander07");
+		wd.findElement(By.id("password")).sendKeys("dhanaraj07");
+		wd.findElement(By.id("login")).click();
+	}
+	
+	
+}

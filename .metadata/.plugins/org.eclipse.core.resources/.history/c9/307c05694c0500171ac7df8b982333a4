@@ -1,0 +1,47 @@
+package pageClass;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+public class Login {
+	@FindBy(id="username")
+	WebElement txtUserName;
+	
+	@FindBy(id="password")
+	WebElement txtPassword;
+	
+	@FindBy(id="login")
+	WebElement btnLogin;
+	
+	public WebElement getTextUserName()
+	{
+		return txtUserName;
+	}
+	
+	public WebElement getTextPassword()
+	{
+		return txtPassword;
+	}
+	
+	public WebElement getBtnLogin()
+	{
+		return btnLogin;
+	}
+	
+	public void setTextUserName(String text)
+	{
+		txtUserName.clear();
+		txtUserName.sendKeys(text);
+	}
+	
+	public void setTextPassword(String text)
+	{
+		txtPassword.clear();
+		txtPassword.sendKeys(text);
+	}
+	
+	public void clickBtnLogin()
+	{
+		btnLogin.click();
+	}
+}

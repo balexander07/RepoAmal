@@ -1,0 +1,17 @@
+package pageClass;
+
+public class Login {
+	@FindBy(id="username")
+	WebElement txtUserName;
+	
+	@FindBy(id="password")
+	WebElement txtPassword;
+	
+	@FindBy(id="login")
+	WebElement btnLogin;
+	
+	public WebElement getTextUserName()
+	{
+		
+	}
+}
